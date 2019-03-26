@@ -1,0 +1,259 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Web_Application.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <style>
+
+        .ColorOfErrorMessage{
+            font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            margin-left:145px;
+            color:darkred;
+            font-weight:bold;
+            font-size:11px;
+        }
+
+        input[value="Cancel"]{
+            background:#d9534f;
+        }
+        .form-vertical-components{
+            margin-bottom:10px;
+        }
+        .form-labels{
+            display:inline-block;
+            
+            width:150px;
+            margin-right:20px;
+            font-family:Arial;
+            
+        }
+        
+
+        .student-form-labels{
+            display:inline-block;
+            
+            width:120px;
+            margin-right:20px;
+        }
+
+        .courses-form-labels{
+            display:inline-block;
+            
+            width:130px;
+            margin-right:20px;
+        }
+
+        .insert-padding{
+            margin-top:30px;
+            margin-left:84px;
+        }
+        .Insert-form{
+            border-style:ridge;
+            box-shadow:5px 5px grey;
+            border-radius:10px;
+            padding:8px;
+        }
+        body{
+            /*background:url(Content/39.jpg) fixed no-repeat;
+            background-image: linear-gradient(to left, #e3e5e8, #c1c4c9);*/
+            background-image: linear-gradient(to right top, #dbe7eb, #dce7eb, #dde6eb, #dee5eb, #dfe5eb, #dfe5eb, #e0e5ea, #e0e5ea, #e0e6e9, #e1e6e8, #e2e7e7, #e4e7e7);
+            background-size:cover;
+            opacity:1;
+        }
+        
+        #editBrandText{
+            float:left; 
+            margin-left:-100px;
+            margin-right:90px;
+            font-family: 'Lobster', cursive;
+            color:white;
+
+        }
+        .customize-rows{
+            border:3px solid #323232;
+            border-radius:8px;
+            background: #dddfe2;
+        }
+
+        .TextBeforeDropDown {
+            font-family: 'Lobster',cursive;
+            font-weight:bold; 
+            font-style:oblique;
+            padding-left:7px;
+            padding-right:12px;
+            color: black;
+            font-size:16px;
+            text-shadow: 1px 0 1px #ababab;
+        }
+
+        .StudentTextBeforeDropDown {
+            display: inline-block;
+            width: 150px;
+            padding: 0 0 0 15px;
+            font-family: 'Lobster',cursive;
+            font-weight: bold;
+        }
+
+        .DropDownBand {
+            background-image: linear-gradient(to top, #6497e0, #5f91df, #5a8cdd, #5686dc, #5380da);
+            padding: 20px 10px; 
+        }
+        .active{
+            border-bottom:3px solid white;
+        }
+
+        .InCaDelBtn{
+            font-family:'Lucida Calligraphy';
+            font-weight:bolder;
+        }
+
+        .title-edit{
+            text-align: center;
+            font-weight:100;
+            letter-spacing: 5px;
+            font-family: Arial;
+            
+        }
+
+        .customize-grid{
+            margin-left:-35px;
+        }
+        .customize-grid-students{
+            margin-left:-50px;
+        }
+        edit-delete-btn{
+                display: block;
+                margin: auto;
+        }
+
+        table {
+            font-family: 'Palatino Linotype' !important;
+        }
+
+       
+    </style>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" id="editBrandText" runat="server" style="" href="~/">College Management System</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <% if( Page.Title == "Departments") { %>
+                            <li class="active"><a runat="server" href="~/Departments">Departments</a></li>
+                        <% }else{ %>
+                            <li><a runat="server" href="~/Departments">Departments</a></li>
+                         <%} %>
+
+                        <% if( Page.Title == "Staff") { %>
+                            <li class="active"><a runat="server" href="~/Staff">Staff</a></li>
+                        <% }else{ %>
+                            <li><a runat="server" href="~/Staff">Staff</a></li>
+                         <%} %>
+
+                        <% if( Page.Title == "Courses") { %>
+                            <li class="active"><a runat="server" href="~/Course">Courses</a></li>
+                        <% }else{ %>
+                                <li><a runat="server" href="~/Course">Courses</a></li>
+                         <%} %>
+
+                        <% if( Page.Title == "Teacher") { %>
+                            <li class="active"><a runat="server" href="~/CTeacher">Teacher</a></li>
+                        <% }else{ %>
+                            <li><a runat="server" href="~/Teacher">Teacher</a></li>
+                         <%} %>
+
+                        <% if( Page.Title == "Students") { %>
+                            <li class="active"><a runat="server" href="~/Students">Student</a></li>
+                        <% }else{ %>
+                            <li><a runat="server" href="~/Students">Student</a></li>
+                         <%} %>
+
+                        <% if( Page.Title == "Classes") { %>
+                            <li class="active"><a runat="server" href="~/Classes">Classes</a></li>
+                        <% }else{ %>
+                            <li><a runat="server" href="~/Classes">Classes</a></li>
+                         <%} %>
+
+                        <% if( Page.Title == "Teacher-Course") { %>
+                            <li class="active"><a runat="server" href="~/Teacher_Course">Teacher-Course</a></li>
+                        <% }else{ %>
+                            <li><a runat="server" href="~/Teacher_Course">Teacher-Course</a></li>
+                         <%} %>
+
+                        <% if( Page.Title == "Teacher-Student") { %>
+                            <li class="active"><a runat="server" href="~/Teacher_Student">Teacher-Student</a></li>
+                        <% }else{ %>
+                            <li><a runat="server" href="~/Teacher_Student">Teacher-Student</a></li>
+                         <%} %>
+
+                       
+                        <% if( Page.Title == "Course-Student") { %>
+                            <li class="active"><a runat="server" href="~/Course_Student_Schedule_Form">Student-Course</a></li>
+                        <% }else{ %>
+                            <li><a runat="server" href="~/Course_Student_Schedule_Form">Student-Course</a></li>
+                         <%} %>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>
+                    Prajan Acharya 16034915&nbsp; -&nbsp; © 2019&nbsp; 
+                    <br />
+                    <small><i><b>Advanced Database Systems Development - CC6001NI - Coursework</b></i></small>
+                </p>
+                
+            </footer>
+        </div>
+
+    </form>
+</body>
+</html>
